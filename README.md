@@ -1,0 +1,1 @@
+Algorithm from "Spezielle Algorithmen" Lecture.

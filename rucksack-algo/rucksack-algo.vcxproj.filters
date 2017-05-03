@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{804b1112-c6d3-460b-8162-eabd93dced6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\algorithms">
+      <UniqueIdentifier>{1a6e2951-cf41-4f13-ae53-4ba83f9f5316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\algorithms\greedy">
+      <UniqueIdentifier>{f0717167-2ef3-4d7e-ab01-827fa7ebc5d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\algorithms\pseudo_poly">
+      <UniqueIdentifier>{e8989c41-6945-4a04-ac05-94dba18cef35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\algorithms\brut_force">
+      <UniqueIdentifier>{9883d61f-72a6-4220-b2b2-b7546f982f8b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PseudoPoly.cpp">
+      <Filter>src\algorithms\pseudo_poly</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RucksackBase.cpp">
+      <Filter>src\algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Greedy.cpp">
+      <Filter>src\algorithms\greedy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BrutForce.cpp">
+      <Filter>src\algorithms\brut_force</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\IRucksack.h">
+      <Filter>src\algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PseudoPoly.h">
+      <Filter>src\algorithms\pseudo_poly</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RucksackBase.h">
+      <Filter>src\algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BrutForce.h">
+      <Filter>src\algorithms\brut_force</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Greedy.h">
+      <Filter>src\algorithms\greedy</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
