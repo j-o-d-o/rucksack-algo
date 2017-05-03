@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <windows.h>
 #include <fstream>
+#include <algorithm>
 
 class RucksackBase : public IRucksack{
 
@@ -25,13 +26,22 @@ protected:
 	int resultWeightTotal;
 
 public:
+	RucksackBase();
 	RucksackBase(vector<int> weight, vector<int> price, int maxWeight);
 	~RucksackBase();
 
 	void init(vector<int> weight, vector<int> price, int maxWeight);
-	pair<int, int> getRunTime();
+
+	// Getter Functions for the Results
+	int getRunTime();
+	int getRunSteps();
+	vector<int> getUsedWeights();
+	int getResultWeight();
+	int getResultPrice();
 	void printResult();
+	double getRelativeError();
+	void setSpeedUp(double speedUp);
 
 	// Pass calculate through to the child classes
-	virtual pair<int, vector<int>> calculate() = 0;
+	void calculate() = 0;
 };

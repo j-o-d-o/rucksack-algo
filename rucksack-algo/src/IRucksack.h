@@ -17,12 +17,20 @@ public:
 	virtual void init(vector<int> weight, vector<int> price, int maxWeight) = 0;
 
 
-	// Calculate using a specified Algorithm, first int is the resulting weight, second one are the indicies of the used weights
-	virtual pair<int, vector<int>> calculate() = 0;
+	// Calculate using a specified Algorithm
+	virtual void calculate() = 0;
 
 
-	// First int is RunTime in ms, Second int is RunTime Steps
-	virtual pair<int, int> getRunTime() = 0;
+	// Set speed up, this can not be done for every algorithm
+	virtual void setSpeedUp(double speedUp) = 0;
+
+	// Getter functions for the results
+	virtual int getRunTime() = 0;
+	virtual int getRunSteps() = 0;
+	virtual vector<int> getUsedWeights() = 0;
+	virtual int getResultWeight() = 0;
+	virtual int getResultPrice() = 0;
+	virtual double getRelativeError() = 0;
 
 
 	// Print the Result of the Algorithm to the Command Box

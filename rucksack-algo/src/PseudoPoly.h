@@ -4,11 +4,19 @@
 
 class PseudoPoly : public RucksackBase {
 private:
+	double speedUp;
+	double relativeError;
 
+	void calcError();
 public:
 	PseudoPoly(vector<int> weight, vector<int> price, int maxWeight);
 	~PseudoPoly();
 
-	pair<int, vector<int>> calculate();
+	void init(vector<int> weight, vector<int> price, int maxWeight);
+
+	void calculate();
 	void printResult();
+
+	void setSpeedUp(double speedUp);
+	double getRelativeError();
 };

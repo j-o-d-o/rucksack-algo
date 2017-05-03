@@ -1,5 +1,8 @@
 #include "RucksackBase.h"
 
+RucksackBase::RucksackBase(){
+}
+
 RucksackBase::RucksackBase(vector<int> weight, vector<int> price, int maxWeight) {
 	init(weight, price, maxWeight);
 }
@@ -21,9 +24,27 @@ void RucksackBase::init(vector<int> weight, vector<int> price, int maxWeight){
 	resultWeightTotal = NULL;
 }
 
-pair<int, int> RucksackBase::getRunTime(){
-	pair<int, int> returnValue(runTime, runSteps);
-	return returnValue;
+int RucksackBase::getRunTime(){
+	return runTime;
+}
+int RucksackBase::getRunSteps(){
+	return runSteps;
+}
+vector<int> RucksackBase::getUsedWeights(){
+	return resultWeights;
+}
+int RucksackBase::getResultWeight(){
+	return resultWeightTotal;
+}
+int RucksackBase::getResultPrice(){
+	return resultPriceTotal;
+}
+double RucksackBase::getRelativeError(){
+	cout << "Warning: This is either an exect Algorithm or the Error can be infinitely bad" << endl;
+	return -1;
+}
+void RucksackBase::setSpeedUp(double speedUp){
+	cout << "Warning: This algorithm has not speed up parameter!" << endl;
 }
 
 void RucksackBase::printResult(){
