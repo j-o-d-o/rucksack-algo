@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
 #include <vector>
 #include <map>
 #include <assert.h>
@@ -9,14 +12,49 @@
 
 using namespace std;
 
-// Parameters
-int maxWeight = 645;		// maximum weight that can be inside the bag
-vector<int> weight{ 153,  54, 191,  66, 239, 137, 148, 249 };
-vector<int> price{  232,  73, 201,  50, 141,  79,  48,  38 };
-//vector<int> weight{ 183, 354, 291, 166, 279, 237, 108,  49, 50, 120, 111,  30, 194, 182, 148, 193, 105 };
-//vector<int>  price{ 122, 173, 201,  80, 211, 179,  48,  38, 30, 111,  23,  49, 139,  98, 199, 189, 174 };
+vector<int> get_tokens(string str) {
+	vector<int> dt;
+	stringstream ss;
+	string tmp; 
+	ss << str;
+	for (size_t i = 0; !ss.eof(); i++) {
+		ss >> tmp;
+		int tmpVal = stoi(tmp.c_str());
+		dt.push_back(tmpVal);
+	}
+	return dt;
+}
+
+
+void readFile(vector<int>* weight, vector<int>* price, int* maxWeight, string fileName){
+	ifstream infile("assets/" + fileName);
+	string line;
+	std::getline(infile, line);
+	int weightTmp = stoi(line.c_str());
+	*maxWeight = weightTmp;
+	std::getline(infile, line);
+	*weight = get_tokens(line);
+	std::getline(infile, line);
+	*price = get_tokens(line);
+}
 
 int main() {
+	string fileName;
+	int speedUp;
+
+	cout << "Rucksack - Algorithms" << endl;
+	cout << "========================================" << endl << endl;
+	cout << "Chose a File (e.g. test.txt):" << endl;
+	getline(cin, fileName);
+	cout << "Chose the speed up for ptas Algorithm (e.g. 10):" << endl;
+	cin >> speedUp;
+	cout << endl;
+
+	vector<int> weight;
+	vector<int> price;
+	int maxWeight;
+
+	readFile(&weight, &price, &maxWeight, fileName);
 	assert(weight.size() == price.size());
 
 	IRucksack* ppAlgo = new PseudoPoly(weight, price, maxWeight);
@@ -24,13 +62,13 @@ int main() {
 	IRucksack* geAlgo = new Greedy(weight, price, maxWeight);
 
 	// Speed Up
-	ppAlgo->setSpeedUp(17);
+	ppAlgo->setSpeedUp(speedUp);
 
 	// Start Algorithms
 	ppAlgo->calculate();
 	bfAlgo->calculate();
 	geAlgo->calculate();
-	
+
 	// Print Input
 	cout << "INPUT: " << endl;
 	cout << "Weights: ";
