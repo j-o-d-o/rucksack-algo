@@ -74,7 +74,7 @@ void PseudoPoly::calculate() {
 	// p.first => the weight at that position in the table
 	// p.second => the previous position in the table (to make it easy to find out the the used weights)
 	pair<int, int> p;
-	while (alpha < maxPriceSum) {
+	while (alpha <= maxPriceSum) {
 		int fi = 0;
 		for (int i = 0; i < n; i++) {
 			steps++;
@@ -132,7 +132,7 @@ void PseudoPoly::calculate() {
 		// Debug output of table, if fi == -1, price was not posible to reach with the given weights
 		bool showTable = false;
 		if (fi != -1 && showTable){
-			cout << alpha;
+			cout << alpha << " |";
 			for (int index = 0; index < table[alpha].size(); index++)
 				cout << "\t" << table[alpha][index].first;
 			cout << endl;
