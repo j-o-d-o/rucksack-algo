@@ -17,7 +17,9 @@ A PTAS is a type of approximation algorithm for optimization problems. It is pol
 The algorithm can be sped up by a factor of <i>k</i> with a resulting relative error of   <img style="margin-left: 4px;margin-bottom: -4px;" src="rucksack-algo/assets/images/CodeCogsEqn2.gif"></img>. If for a specific relative error the k is calculated and used, an FPTAS can be created which is also polynomial in its input with the complexity <img style="margin-bottom: -4px;" src="rucksack-algo/assets/images/CodeCogsEqn3.gif"></img><br>
 <b>Implementation</b>: Iterate the price from 0 to the sum of all prices (maximum possible price). The goal is to find for each price <img style="margin-bottom: 0px;" src="rucksack-algo/assets/images/alpha.gif"></img>, the smallest possible weight <img style="margin-bottom: -4px;" src="rucksack-algo/assets/images/fi_alpha.gif"></img> using the weights 1.. i. To achieve that, each <img style="margin-bottom: -4px;" src="rucksack-algo/assets/images/fi_alpha.gif"></img> must be saved into a table for a later lookup of since <img style="margin-bottom: -4px;" src="rucksack-algo/assets/images/fi_formel.gif"></img>.<br>
 For a very simple example with four items: (1€, 2kg), (2€, 3kg), (3€, 4kg), (2€, 6kg) and a maximum of 10kg, this is the resulting table:
-<img style="display: block;margin-top:5px;margin-bottom:5px;" src="rucksack-algo/assets/images/example_table.png"></img>
+<br>
+<img style="margin-top:5px;margin-bottom:5px;" src="rucksack-algo/assets/images/example_table.png"></img>
+<br>
 The left column is the price <img style="margin-bottom: 0px;" src="rucksack-algo/assets/images/alpha.gif"></img> = 0.. 7€, the following 4 columns are <img style="margin-bottom: -4px;" src="rucksack-algo/assets/images/fi_alpha.gif"></img> with i = 0.. 3. The table shows that the result is 6€ with 9kg since it reaches the highest price while being <= 10kg. 
 
 ## How to use the program
