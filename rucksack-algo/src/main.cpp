@@ -10,8 +10,6 @@
 #include "BrutForce.h"
 #include "Greedy.h"
 
-#define STRINGIFY(x) #x
-#define EXPAND(x) STRINGIFY(x)
 
 using namespace std;
 
@@ -48,11 +46,13 @@ int main() {
 
 	cout << "Rucksack - Algorithms" << endl;
 	cout << "========================================" << endl << endl;
+
 	while(true){
 		cout << "Chose a File (e.g. test.txt):" << endl;
 		getline(cin, fileName);
 		cout << "Chose the speed up for ptas Algorithm (e.g. 10):" << endl;
 		cin >> speedUp;
+		cin.ignore(1, '\n');
 		cout << endl;
 
 		vector<int> weight;
@@ -90,6 +90,8 @@ int main() {
 		ppAlgo->printResult();
 		bfAlgo->printResult();
 		geAlgo->printResult();
+
+		cout << endl << endl;
 	}
 	return 0;
 } 
