@@ -10,6 +10,9 @@
 #include "BrutForce.h"
 #include "Greedy.h"
 
+#define STRINGIFY(x) #x
+#define EXPAND(x) STRINGIFY(x)
+
 using namespace std;
 
 vector<int> get_tokens(string str) {
@@ -27,6 +30,7 @@ vector<int> get_tokens(string str) {
 
 
 void readFile(vector<int>* weight, vector<int>* price, int* maxWeight, string fileName){
+
 	ifstream infile("assets/" + fileName);
 	string line;
 	std::getline(infile, line);
@@ -44,48 +48,48 @@ int main() {
 
 	cout << "Rucksack - Algorithms" << endl;
 	cout << "========================================" << endl << endl;
-	cout << "Chose a File (e.g. test.txt):" << endl;
-	getline(cin, fileName);
-	cout << "Chose the speed up for ptas Algorithm (e.g. 10):" << endl;
-	cin >> speedUp;
-	cout << endl;
+	while(true){
+		cout << "Chose a File (e.g. test.txt):" << endl;
+		getline(cin, fileName);
+		cout << "Chose the speed up for ptas Algorithm (e.g. 10):" << endl;
+		cin >> speedUp;
+		cout << endl;
 
-	vector<int> weight;
-	vector<int> price;
-	int maxWeight;
+		vector<int> weight;
+		vector<int> price;
+		int maxWeight;
 
-	readFile(&weight, &price, &maxWeight, fileName);
-	assert(weight.size() == price.size());
+		readFile(&weight, &price, &maxWeight, fileName);
+		assert(weight.size() == price.size());
 
-	IRucksack* ppAlgo = new PseudoPoly(weight, price, maxWeight);
-	IRucksack* bfAlgo = new BrutForce(weight, price, maxWeight);
-	IRucksack* geAlgo = new Greedy(weight, price, maxWeight);
+		IRucksack* ppAlgo = new PseudoPoly(weight, price, maxWeight);
+		IRucksack* bfAlgo = new BrutForce(weight, price, maxWeight);
+		IRucksack* geAlgo = new Greedy(weight, price, maxWeight);
 
-	// Speed Up
-	ppAlgo->setSpeedUp(speedUp);
+		// Speed Up
+		ppAlgo->setSpeedUp(speedUp);
 
-	// Start Algorithms
-	ppAlgo->calculate();
-	bfAlgo->calculate();
-	geAlgo->calculate();
+		// Start Algorithms
+		ppAlgo->calculate();
+		bfAlgo->calculate();
+		geAlgo->calculate();
 
-	// Print Input
-	cout << "INPUT: " << endl;
-	cout << "Weights: ";
-	for(int i=0; i < weight.size(); ++i)
-		std::cout << weight[i] << '\t';
-	cout << endl;
-	cout << "Prices: " << " ";
-	for(int i=0; i < price.size(); ++i)
-		std::cout << price[i] << "\t";
-	cout << endl;
-	cout << "Max Weight: " << maxWeight << endl << endl;
+		// Print Input
+		cout << "INPUT: " << endl;
+		cout << "Weights: ";
+		for(int i=0; i < weight.size(); ++i)
+			std::cout << weight[i] << '\t';
+		cout << endl;
+		cout << "Prices: " << " ";
+		for(int i=0; i < price.size(); ++i)
+			std::cout << price[i] << "\t";
+		cout << endl;
+		cout << "Max Weight: " << maxWeight << endl << endl;
 
-	// Print Results
-	ppAlgo->printResult();
-	bfAlgo->printResult();
-	geAlgo->printResult();
-
-	system("pause");
+		// Print Results
+		ppAlgo->printResult();
+		bfAlgo->printResult();
+		geAlgo->printResult();
+	}
 	return 0;
 } 
