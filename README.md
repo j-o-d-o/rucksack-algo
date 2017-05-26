@@ -20,7 +20,7 @@ For a very simple example with four items: (1€, 2kg), (2€, 3kg), (3€, 4kg)
 <br>
 <img src="rucksack-algo/assets/images/example_table.png"></img>
 <br>
-The left column is the price <img src="rucksack-algo/assets/images/alpha.gif"></img> = 0.. 7€, the following 4 columns are <img src="rucksack-algo/assets/images/fi_alpha.gif"></img> with i = 0.. 3. The table shows that the result is 6€ with 9kg since it reaches the highest price while being <= 10kg. 
+<i>-1</i> is a placeholder for infinity. The left column is the price <img src="rucksack-algo/assets/images/alpha.gif"></img> = 0.. 7€, the following 4 columns are <img src="rucksack-algo/assets/images/fi_alpha.gif"></img> with i = 0.. 3. The table shows that the result is 6€ with 9kg since it reaches the highest price while being <= 10kg. 
 
 ## How to use the program
 On program start, two parameters must be provided. 1.) the file name with the data for the specific Rucksackproblem. 2.) the speedup <i>k</i> for the PTAS algorithm. You can choose from the three existing files: test.txt, test_2.txt, greedy_bad.txt or create your own file. The format is like that:<br><br>
