@@ -3,7 +3,7 @@
 
 PseudoPoly::PseudoPoly(vector<int> weight, vector<int> price, int maxWeight){
 	this->speedUp = 1;	// No speed up
-	this->relativeError = 0;
+	this->relativeError = 0; // No error => result is exact
 
 	init(weight, price, maxWeight);
 }
@@ -16,6 +16,9 @@ void PseudoPoly::calcError(){
 	for (auto val : price) {
 		if (max < val) max = val;
 	}
+	// The formular for the relative error is not 100% exact, it is an appraisal
+	// Thus if speedUp is 1 the formular does not output a relative error of 0
+	// That is why it must be set to 0 programmatically in that case
 	if (speedUp > 1)
 		relativeError = ((double)price.size() / (double)max) * speedUp;
 	else
@@ -31,8 +34,10 @@ void PseudoPoly::init(vector<int> weight, vector<int> price, int maxWeight){
 
 void PseudoPoly::setSpeedUp(double speedUp){
 	this->speedUp = speedUp;
+	// When speedup changes, the relative error must be calculated again
 	calcError();
 }
+
 double PseudoPoly::getRelativeError(){
 	if (speedUp <= 1)
 		return 0;
@@ -54,7 +59,6 @@ void PseudoPoly::calculate() {
 	// Start Timer
 	long int start = GetTickCount();
 
-
 	// Variables 
 	int alpha = 0;
 	size_t n = weight.size();
@@ -74,6 +78,8 @@ void PseudoPoly::calculate() {
 	// p.first => the weight at that position in the table
 	// p.second => the previous position in the table (to make it easy to find out the the used weights)
 	pair<int, int> p;
+
+	// To make more sense off these algorithm also look into the README.md file
 	while (alpha <= maxPriceSum) {
 		int fi = 0;
 		for (int i = 0; i < n; i++) {
@@ -90,6 +96,8 @@ void PseudoPoly::calculate() {
 						table[alpha].push_back(pair<int,int>(weight.at(0),0));
 					}
 					else {
+						// NOTE: using -1 as a placeholder for infinity might have not been the smartest move... 
+						// have to make some if condition statments later on that I think could be avoided otherwise
 						table[alpha].push_back(pair<int,int>(-1,0));
 					}
 				}
@@ -120,6 +128,8 @@ void PseudoPoly::calculate() {
 						prev = alpha;
 					}
 
+					// Saving the previous alpha makes it much easier to retrive 
+					// exactly which items where used for the final result
 					table[alpha].push_back(pair<int, int>(fi, prev));
 				}
 			}
@@ -143,10 +153,16 @@ void PseudoPoly::calculate() {
 	long int end = GetTickCount();
 
 	 
-	// Set Result values
+	// Get result values
 	int currentLine = alphaMax;
 	resultPriceTotal = 0;
+	// 
 	for(int i = (table[alphaMax].size()-1); i >= 0; --i){
+		// table[currentLine][i].second == previous alpha
+		// Each time the previous line is not the current line, 
+		// indicates that a weight has been added there
+		// in the README.md file at the table image: 
+		// for each read arrow darwn in to the image
 		if(table[currentLine][i].second != currentLine){
 			currentLine = table[currentLine][i].second;
 			resultWeights.push_back(weight.at(i));

@@ -1,4 +1,7 @@
 #pragma once
+/**
+	Interface for each Rucksack Algorithm
+*/
 
 #include <iostream>
 #include <vector>
@@ -10,21 +13,24 @@ public:
 	
 	virtual ~IRucksack() {}
 
-	// Initilize the Algorithm with the needed info
-	// maxWeight => Total weight the Rucksack can have
-	// weight => Vector with all the weights of the objects that can be chosen 
-	// price => Corresponding to each weight there is a price at the same index
+	/**
+		Initilize the Algorithm with the needed parameters
+		@params	maxWeight: Total weight the Rucksack can have
+				weight: Vector with all the weights of the objects that can be chosen 
+				price: Corresponding to each weight there is a price at the same index
+	*/
 	virtual void init(vector<int> weight, vector<int> price, int maxWeight) = 0;
 
 
-	// Calculate using a specified Algorithm
+	// Calculate a result with the algorithm
 	virtual void calculate() = 0;
 
 
-	// Set speed up, this can not be done for every algorithm
+	// Setter
 	virtual void setSpeedUp(double speedUp) = 0;
 
-	// Getter functions for the results
+
+	// Getter
 	virtual int getRunTime() = 0;
 	virtual int getRunSteps() = 0;
 	virtual vector<int> getUsedWeights() = 0;
@@ -33,6 +39,6 @@ public:
 	virtual double getRelativeError() = 0;
 
 
-	// Print the Result of the Algorithm to the Command Box
+	// Print the Result of the Algorithm to the command line
 	virtual void printResult() = 0;
 };

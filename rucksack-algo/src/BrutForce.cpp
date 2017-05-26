@@ -27,7 +27,7 @@ void BrutForce::calculate() {
 	}
 
 	// Just try out every posible combination
-	// It is basicly counting values up to 2^n and each bit is a "object"
+	// It is basicly counting binary values up to 2^n and each bit is a "object"
 	unsigned int maxTry = pow(2, size);
 	int priceTmp = 0;
 	int weightTmp = 0;

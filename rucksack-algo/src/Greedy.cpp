@@ -43,9 +43,12 @@ void Greedy::calculate() {
 	resultWeightTotal = 0;
 	resultWeights.clear();
 	int weightLeft = maxWeight;
+
+	// Loop through the sorted ratios 
 	for(int i = 0; i < size; i++){
 		steps++;
 		int testWeight = weight.at(ratios[i].first);
+		// If the current weight still fits into the rucksack => put it in
 		if(weightLeft >= testWeight){
 			weightLeft -= testWeight;
 			resultPriceTotal += price.at(ratios[i].first);

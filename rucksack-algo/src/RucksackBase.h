@@ -1,5 +1,11 @@
 #pragma once
 
+/**
+	Base class for each Rucksack Algorithm
+	includes the parameters and the basic results as member variables
+	as well as an implementation of the init method and for the getter / setter methods
+*/
+
 #include "IRucksack.h"
 
 #include <iostream>
